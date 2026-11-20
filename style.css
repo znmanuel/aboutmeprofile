@@ -1,0 +1,303 @@
+/* ---------- 1. Design ---------- */
+:root {
+  /* Pastel palette */
+  --beige:        #F6EEDF;   /* page background */
+  --beige-deep:   #EADFC8;   /* borders / dividers */
+  --blue:         #CFE3F5;   /* header, footer, photo frame */
+  --blue-deep:    #3D6FA3;   /* links, accents (readable on beige) */
+  --yellow:       #FCEFB4;   /* cards, highlights */
+  --yellow-deep:  #F3D977;   /* accent line / hover */
+  --ink:          #2F3E55;   /* main text and headings (soft navy) */
+  --white:        #FFFDF8;   /* card surfaces */
+
+  /* Typefaces */
+  --font-title:   "Fraunces", Georgia, "Times New Roman", serif;
+  --font-header:  "Quicksand", "Trebuchet MS", Arial, sans-serif;
+  --font-text:    "Nunito Sans", "Segoe UI", Arial, sans-serif;
+
+  /* Spacing scale (box model) */
+  --space-s: 0.75rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+}
+
+
+/* ---------- 2. Reset + base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;      /* padding and border stay inside the width */
+}
+
+html {
+  font-size: 100%;  
+}
+
+body {
+  margin: 0;
+  background-color: var(--beige);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+
+/* ---------- 3. Page layout ---------- */
+main {
+  max-width: 62rem;            
+  margin: 0 auto;          
+  padding: var(--space-l) var(--space-m);
+}
+
+section {
+  margin-bottom: var(--space-l);
+}
+
+hr {
+  border: 0;
+  border-top: 2px dashed var(--beige-deep);
+  margin: var(--space-l) 0;
+}
+
+
+/* ---------- 4. Headings ---------- */
+
+/* TITLE: Zyrrus Jireh Sam Manuel (Fraunces) */
+h1 {
+  font-family: var(--font-title);
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 var(--space-s);
+  color: var(--ink);
+}
+
+/* HEADER: section headings (Quicksand) */
+h2 {
+  font-family: var(--font-header);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 var(--space-m);
+  padding-bottom: 0.5rem;
+  border-bottom: 4px solid var(--yellow-deep);
+  display: inline-block;       /* underline is only as wide as the text */
+  color: var(--ink);
+}
+
+h3 {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-s);
+  color: var(--blue-deep);
+}
+
+p {
+  margin: 0 0 var(--space-s);
+}
+
+
+/* ---------- 5. Top banner (header) ---------- */
+body > section:first-of-type,
+main > section:first-of-type {
+  background-color: var(--blue);
+  border: 2px solid var(--ink);
+  border-radius: 1.25rem;
+  padding: var(--space-l) var(--space-m);
+  text-align: center;
+  box-shadow: 6px 6px 0 var(--yellow-deep);
+}
+
+header p {
+  font-family: var(--font-title);   
+  font-style: italic;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+
+/* ---------- 6. FLEXBOX: photo beside the bio ---------- */
+.bio {
+  display: flex;
+  flex-direction: row;        
+  align-items: center;
+  gap: var(--space-l);
+  background-color: var(--yellow);
+  border: 2px solid var(--ink);
+  border-radius: 1.25rem;
+  padding: var(--space-m);
+}
+
+.bio-text {
+  flex: 1;                   
+}
+
+.bio-text p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-photo {
+  flex: 0 0 14rem;             
+  width: 14rem;
+  height: 14rem;
+  object-fit: cover;           
+  border: 6px solid var(--blue);
+  border-radius: 50%;          /* circle. Use 1rem for a rounded square */
+  background-color: var(--blue);   
+  box-shadow: 0 0 0 3px var(--ink);
+}
+
+
+/* ---------- 7. Passion projects ---------- */
+figure,
+.passion-figure {
+  margin: 0;
+}
+
+main img:not(.profile-photo) {
+  display: block;
+  max-width: 100%;             
+  height: auto;
+  border: 2px solid var(--ink);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background-color: var(--white);
+}
+
+.caption {
+  margin-top: var(--space-s);
+  font-style: italic;
+  color: var(--blue-deep);
+}
+
+
+/* ---------- 7b. Project highlights (from your XML data) ---------- */
+h4 {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: var(--ink);
+}
+
+.project-list {
+  display: flex;               
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  margin-top: var(--space-m);
+}
+
+.project {
+  flex: 1 1 16rem;             
+  background-color: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 1rem;
+  padding: var(--space-m);
+  box-shadow: 4px 4px 0 var(--blue);
+}
+
+.project:nth-child(2) {
+  box-shadow: 4px 4px 0 var(--yellow-deep);
+}
+
+.project p:last-child {
+  margin-bottom: 0;
+}
+
+.project-date {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: var(--space-s);
+}
+
+
+/* ---------- 8. Things I love (list as pastel chips) ---------- */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;               
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+li {
+  background-color: var(--yellow);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+  font-weight: 600;
+}
+
+li:nth-child(even) {
+  background-color: var(--blue);
+}
+
+
+/* ---------- 9. Links ---------- */
+a {
+  color: var(--blue-deep);
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus-visible {
+  background-color: var(--yellow-deep);
+  color: var(--ink);
+  outline: none;
+}
+
+
+/* ---------- 10. Footer / Contact ---------- */
+footer {
+  background-color: var(--blue);
+  border-top: 2px solid var(--ink);
+  padding: var(--space-l) var(--space-m);
+}
+
+footer section {
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+footer p {
+  margin-bottom: 0.5rem;
+}
+
+
+/* ---------- 11. MOBILE: stack everything on small screens ---------- */
+@media (max-width: 600px) {
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+
+  main {
+    padding: var(--space-m) var(--space-s);
+  }
+
+  .bio {
+    flex-direction: column;    /* photo on top, text below */
+    text-align: center;
+    gap: var(--space-m);
+  }
+
+  .profile-photo {
+    flex: 0 0 auto;
+    width: 11rem;
+    height: 11rem;
+  }
+
+  ul {
+    justify-content: center;
+  }
+
+  footer {
+    text-align: center;
+    padding: var(--space-m) var(--space-s);
+  }
+}
